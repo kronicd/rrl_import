@@ -16,4 +16,5 @@ LEFT JOIN site ON site.site_id = device_details.site_id
 WHERE call_sign <> ''
     AND status_text = 'Granted'
     AND date_of_expiry > CURRENT_DATE
-    AND licence_type_name LIKE '%Amateur%';
+    AND licence_type_name LIKE '%Amateur%'
+ORDER by date_of_effect DESC;
