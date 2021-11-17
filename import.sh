@@ -17,7 +17,7 @@ fi
 
 ### Remove existing files ###
 
-files=( spectra_rrl.zip rrl.db callbook.csv )
+files=( spectra_rrl.zip rrl.db rrl.7z callbook.csv )
 
 for file in "${files[@]}" ; do
     if [ -f "$file" ]; then
@@ -67,4 +67,30 @@ sqlite3 rrl.db < licence_holders.sql
 if [ $? -ne 0 ]; then
     echo 'Creation of callbook failed'
     exit
+fi
+
+
+7z a rrl.7z rrl.db
+
+if [ $? -ne 0 ]; then
+    echo 'Compression of rrl.db failed'
+    exit
+fi
+
+### Remove temp files ###
+
+files=( spectra_rrl.zip rrl.db spectra )
+
+for file in "${files[@]}" ; do
+    if [ -f "$file" ]; then
+        echo "$file exists, deleting"
+        rm "$file"
+    fi
+done
+
+### Remove directory
+
+if [ -d "spectra" ]; then
+    echo "spectra directory exists, deleting"
+    rm -r "spectra"
 fi
