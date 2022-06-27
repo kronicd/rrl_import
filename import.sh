@@ -94,3 +94,11 @@ if [ -d "spectra" ]; then
     echo "spectra directory exists, deleting"
     rm -r "spectra"
 fi
+
+### Rename output csv
+
+if [ -f "callbook.csv" ]; then
+    date=$(date '+%Y%m%d')
+    mv callbook.csv "callbook_${date}.csv"
+fi
+
