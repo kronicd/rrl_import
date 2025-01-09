@@ -176,7 +176,8 @@ create table licence(
  AP_ID                  NUMERIC(10),
  AP_PRJ_IDENT           VARCHAR(511),
  SHIP_NAME              VARCHAR(255),
- BSL_NO                 VARCHAR(31));
+ BSL_NO                 VARCHAR(31),
+ AWL_TYPE               VARCHAR(511));
 
 create table licence_service(
  SV_ID            NUMERIC(10),
